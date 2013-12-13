@@ -12,7 +12,7 @@ public class SleepingFigure extends Event
 		if (!interactedWith) {
 			Item dirtyBundle = new Item("dirty bundle");
 			dirtyBundle.setDescr("There's a dirty bundle on the floor.\n");
-			TheGreatMansion.currentRoom.addItem(dirtyBundle);
+			TheGreatMansion.getCurrentRoom().addItem(dirtyBundle);
 			interactedWith = true;
 			return "As you inspect the sleeping figure, it drops a dirty bundle.\n";
 		} else {

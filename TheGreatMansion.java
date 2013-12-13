@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class TheGreatMansion
 {
 	private static Prompt prompt;
-	public static Room currentRoom;
+	private static Room currentRoom;
 	private static Room endRoom;
 	private static Inventory inventory;
 	private static ArrayList<Room> transporters;
@@ -28,6 +28,11 @@ public class TheGreatMansion
 		}
 
 		printGoodbye();
+	}
+
+	public static Room getCurrentRoom()
+	{
+		return currentRoom;
 	}
 
 	private static boolean interpret(String cmdStr)

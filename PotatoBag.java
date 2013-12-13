@@ -12,7 +12,7 @@ public class PotatoBag extends Event
 		if (!interactedWith) {
 			Item pnoTuneTool = new Item("piano tuning tools");
 			pnoTuneTool.setDescr("There are some piano tuning tools on the floor.\n");
-			TheGreatMansion.currentRoom.addItem(pnoTuneTool);
+			TheGreatMansion.getCurrentRoom().addItem(pnoTuneTool);
 			interactedWith = true;
 			return "As you inspect the potato bag, a set of piano tuning tools fall out of it.\n";
 		} else {
