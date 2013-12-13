@@ -6,11 +6,13 @@ public class TheGreatMansion
 	public static Room currentRoom;
 	private static Room endRoom;
 	private static Inventory inventory;
+	private static ArrayList<Room> transporters;
 
 	public static void main(String[] args)
 	{
 		inventory = new Inventory();
 		prompt = new Prompt();
+		transporters = new ArrayList<Room>();
 		printWelcome();
 		String cmdStr;
 
@@ -78,6 +80,14 @@ public class TheGreatMansion
 				}
 
 				currentRoom = currentRoom.getRoom(cmdArgs);
+
+				for (Room room : transporters) {
+					if (room == currentRoom) {
+						int rnd = (int)((Math.random() * 10) % 2);
+						currentRoom = transporters.get(rnd);
+					}
+				}
+
 				System.out.println(currentRoom.getLongDescr());
 			}
 		} else if (cmd.equals("take")) {
@@ -293,6 +303,10 @@ public class TheGreatMansion
 		corridor2.setUsable("golden key");
 		bedroom3.addDoor("west", corridor2, 0);
 		bedroom4.addDoor("west", corridor2, 0);
+
+		transporters.add(bedroom1);
+		transporters.add(bedroom2);
+		transporters.add(bedroom3);
 
 		currentRoom = outside;
 		endRoom = outside;
