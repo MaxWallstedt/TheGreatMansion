@@ -9,7 +9,7 @@ public class Room
 	private ArrayList<Character> characters;
 	private ArrayList<String> usableItems;
 	private HashMap<String, Room> doors;
-	private HashMap<String, Integer> keys;
+	private HashMap<String, Boolean> doorLocked;
 	private String descr;
 
 	public Room(String descr)
@@ -19,14 +19,14 @@ public class Room
 		characters = new ArrayList<Character>();
 		usableItems = new ArrayList<String>();
 		doors = new HashMap<String, Room>();
-		keys = new HashMap<String, Integer>();
+		doorLocked = new HashMap<String, Boolean>();
 		this.descr = descr;
 	}
 
-	public void addDoor(String direction, Room room, int key)
+	public void addDoor(String direction, Room room, boolean locked)
 	{
 		doors.put(direction, room);
-		keys.put(direction, key);
+		doorLocked.put(direction, locked);
 	}
 
 	public ArrayList<Item> getItems()
@@ -88,7 +88,7 @@ public class Room
 	 */
 	public void unlock(String door)
 	{
-		keys.put(door, 0);
+		doorLocked.put(door, false);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class Room
 	 */
 	public boolean isLocked(String door)
 	{
-		return (keys.get(door) != 0);
+		return doorLocked.get(door);
 	}
 
 	public String getLongDescr()
