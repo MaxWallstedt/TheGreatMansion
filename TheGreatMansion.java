@@ -53,7 +53,7 @@ public class TheGreatMansion
 			System.out.println("Are you sure that you really want to quit?\n");
 			String sure;
 
-			while (!(sure = prompt.getLine()).equals("yes")
+			while (!(sure = prompt.getLine().toLowerCase()).equals("yes")
 			       && !sure.equals("no")) {
 				System.out.println("Please answer yes or no\n");
 			}
