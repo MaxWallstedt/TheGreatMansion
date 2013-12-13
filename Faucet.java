@@ -8,6 +8,6 @@ public class Faucet extends Event
 
 	public String inspect()
 	{
-		return "This could probably be used to clean dirty things...";
+		return "This could probably be used to clean dirty things...\n";
 	}
 }

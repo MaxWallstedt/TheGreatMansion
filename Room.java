@@ -6,6 +6,7 @@ public class Room
 {
 	private ArrayList<Item> items;
 	private ArrayList<Event> events;
+	private ArrayList<Character> characters;
 	private ArrayList<String> usableItems;
 	private HashMap<String, Room> doors;
 	private HashMap<String, Integer> keys;
@@ -15,6 +16,7 @@ public class Room
 	{
 		items = new ArrayList<Item>();
 		events = new ArrayList<Event>();
+		characters = new ArrayList<Character>();
 		usableItems = new ArrayList<String>();
 		doors = new HashMap<String, Room>();
 		keys = new HashMap<String, Integer>();
@@ -45,6 +47,11 @@ public class Room
 	public void addEvent(Event event)
 	{
 		events.add(event);
+	}
+
+	public void addCharacter(Character character)
+	{
+		characters.add(character);
 	}
 
 	public Item takeItem(String name)
@@ -105,6 +112,10 @@ public class Room
 			longDescr += item.getDescr();
 		}
 
+		for (Character character : characters) {
+			longDescr += character.getDescr();
+		}
+
 		longDescr += "\n";
 		longDescr += "Exits:";
 		Set<String> exits = doors.keySet();
@@ -143,6 +154,28 @@ public class Room
 		}
 
 		return false;
+	}
+
+	public boolean containsCharacter(String name)
+	{
+		for (Character character : characters) {
+			if (character.getName().equals(name)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public Character getCharacter(String name)
+	{
+		for (Character character : characters) {
+			if (character.getName().equals(name)) {
+				return character;
+			}
+		}
+
+		return null;
 	}
 
 	public Item take(String name)

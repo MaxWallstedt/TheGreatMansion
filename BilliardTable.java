@@ -8,6 +8,6 @@ public class BilliardTable extends Event
 
 	public String inspect()
 	{
-		return "That's definitely a billiard table.";
+		return "That's definitely a billiard table.\n";
 	}
 }

@@ -10,7 +10,7 @@ public class SleepingFigure extends Event
 	public String inspect()
 	{
 		if (!interactedWith) {
-			Item dirtyBundle = new Item("Dirty bundle");
+			Item dirtyBundle = new Item("dirty bundle");
 			dirtyBundle.setDescr("There's a dirty bundle on the floor.\n");
 			TheGreatMansion.currentRoom.addItem(dirtyBundle);
 			interactedWith = true;

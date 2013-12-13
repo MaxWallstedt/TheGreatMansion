@@ -59,6 +59,11 @@ public class Prompt
 		inspect.setInvokStr("inspect <thing>");
 		inspect.setDescr("Inspect <thing> in the current room");
 		cmds.add(inspect);
+
+		Command talk = new Command("talk");
+		talk.setInvokStr("talk <character>");
+		talk.setDescr("Talk to <character>");
+		cmds.add(talk);
 	}
 
 	public String getLine()

@@ -8,6 +8,6 @@ public class TrophyCase extends Event
 
 	public String inspect()
 	{
-		return "That's definitely a trophy case.";
+		return "That's definitely a trophy case.\n";
 	}
 }

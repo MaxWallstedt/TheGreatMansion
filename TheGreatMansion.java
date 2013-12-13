@@ -75,7 +75,7 @@ public class TheGreatMansion
 				System.out.println("The door is locked.\n");
 			} else {
 				if (currentRoom.getRoom(cmdArgs) == endRoom) {
-					System.out.println("You made it! You're out of the darned mansion again!");
+					System.out.println("You made it! You're out of the darned mansion again!\n");
 					return false;
 				}
 
@@ -106,7 +106,7 @@ public class TheGreatMansion
 			if (!inventory.contains(cmdArgs)) {
 				System.out.println("No such item in your inventory\n");
 			} else if (!currentRoom.isUsable(cmdArgs)) {
-				System.out.println("That is pretty useless here\n");
+				System.out.println("That is pretty useless here.\n");
 			} else {
 				System.out.println(use(cmdArgs));
 			}
@@ -115,6 +115,12 @@ public class TheGreatMansion
 				System.out.println("No such thing in the room!\n");
 			} else {
 				System.out.println(currentRoom.getEvent(cmdArgs).inspect());
+			}
+		} else if (cmd.equals("talk")) {
+			if (!currentRoom.containsCharacter(cmdArgs)) {
+				System.out.println("There's no such character in this room.\n");
+			} else {
+				System.out.println(currentRoom.getCharacter(cmdArgs).talkTo());
 			}
 		} else {
 			System.out.println("Unknown command\n");
@@ -184,75 +190,80 @@ public class TheGreatMansion
 
 	private static void createRooms()
 	{
-		Room outside = new Room("You are outside the Great Mansion.\n" +
+		Room outside = new Room("You are outside the Great Mansion.\n\n" +
 		                        "To your north lies the entrance.\n");
-		Room mainHall = new Room("You are in the main hall.\n" +
+		Room mainHall = new Room("You are in the main hall.\n\n" +
 		                         "North lies the grand staircase,\n" +
 		                         "west lies the dining hall,\n" +
 		                         "east lies the sitting room and\n" +
 		                         "south lies the main entrance.\n");
-		Room grandStairCase = new Room("You are on the grand staircase.\n" +
+		Room grandStairCase = new Room("You are on the grand staircase.\n\n" +
 		                               "To the west and east, the staircase goes up a floor and\n" +
 		                               "south lies the main hall.\n");
-		Room diningHall = new Room("You are in the dining hall.\n" +
+		Room diningHall = new Room("You are in the dining hall.\n\n" +
 		                           "North lies the kitchen and\n" +
 		                           "east lies the main hall.\n");
-		Room kitchen = new Room("You are in the kitchen.\n" +
+		Room kitchen = new Room("You are in the kitchen.\n\n" +
 		                        "North lies the pantry,\n" +
 		                        "south lies the dining hall and\n" +
 		                        "down the stairs lies the basement.\n");
-		Room pantry = new Room("You are in the pantry.\n" +
+		Room pantry = new Room("You are in the pantry.\n\n" +
 		                       "South lies the kitchen.\n");
 		Item potato = new Item("potato");
 		potato.setDescr("On the floor lies a potato.\n");
 		pantry.addItem(potato);
-		Room sittingRoom = new Room("You are in the sitting room.\n" +
+		Room sittingRoom = new Room("You are in the sitting room.\n\n" +
 		                            "North lies the gaming room and\n" +
 		                            "west lies the main hall.\n");
-		Room gamingRoom = new Room("You are in the gaming room.\n" +
+		Room gamingRoom = new Room("You are in the gaming room.\n\n" +
 		                           "North lies the trophy room and\n" +
 		                           "south lies the sitting room.\n");
 		gamingRoom.addEvent(new BilliardTable());
-		Room trophyRoom = new Room("You are in the trophy room.\n" +
+		Room trophyRoom = new Room("You are in the trophy room.\n\n" +
 		                           "West lies the music room and\n" +
 		                           "south lies the gaming room.\n");
 		trophyRoom.addEvent(new TrophyCase());
-		Room musicRoom = new Room("You are in the music room.\n" +
-		                          "East lies the trophy room .\n");
+		Room musicRoom = new Room("You are in the music room.\n\n" +
+		                          "East lies the trophy room.\n");
 		musicRoom.addEvent(new GrandPiano());
-		Room basement = new Room("You are in the basement.\n" +
+		Room basement = new Room("You are in the basement.\n\n" +
 		                         "Up the stair lies the kitchen.\n");
 		basement.addEvent(new PotatoBag());
-		Room bedroom1 = new Room("You are in a bedroom.\n" +
+		Room bedroom1 = new Room("You are in a bedroom.\n\n" +
 		                         "East lies a corridor and\n" +
 		                         "down a trapdoor lies the pantry.\n");
-		Room bedroom2 = new Room("You are in a bedroom.\n" +
+		Room bedroom2 = new Room("You are in a bedroom.\n\n" +
 		                         "East lies a corridor.\n");
-		Room corridor1 = new Room("You are in a corridor.\n" +
+		Character cat = new Character("cat");
+		cat.setDescr("There's a cat sitting on the floor.\n");
+		cat.addThingToSay("This is my room!\n");
+		cat.addThingToSay("I'm a cat.\n");
+		bedroom2.addCharacter(cat);
+		Room corridor1 = new Room("You are in a corridor.\n\n" +
 		                          "North-west lies a bedroom,\n" +
 		                          "south-west lies another bedroom,\n" +
 		                          "north-east lies a passage,\n" +
 		                          "south-east lies another passage and\n" +
 		                          "east lies the staircase down.\n");
-		Room passage1 = new Room("You are in a passage.\n" +
+		Room passage1 = new Room("You are in a passage.\n\n" +
 		                         "West lies a corridor and\n" +
 		                         "east lies another corridor.\n");
-		Room passage2 = new Room("You are in a passage.\n" +
+		Room passage2 = new Room("You are in a passage.\n\n" +
 		                         "North lies the washing room,\n" +
 		                         "west lies a corridor and\n" +
 		                         "east lies another corridor.\n");
-		Room washingRoom = new Room("You are in the washing room.\n" +
+		Room washingRoom = new Room("You are in the washing room.\n\n" +
 		                            "South lies a passage.\n");
 		washingRoom.addEvent(new Faucet());
-		Room corridor2 = new Room("You are in a corridor.\n" +
+		Room corridor2 = new Room("You are in a corridor.\n\n" +
 		                          "North-west lies a passage,\n" +
 		                          "south-west lies another passage,\n" +
 		                          "north-east lies a bedroom,\n" +
 		                          "south-east lies another bedroom and\n" +
 		                          "west lies the staircase down.\n");
-		Room bedroom3 = new Room("You are in a bedroom.\n" +
+		Room bedroom3 = new Room("You are in a bedroom.\n\n" +
 		                         "West lies a corridor.\n");
-		Room bedroom4 = new Room("You are in a bedroom.\n" +
+		Room bedroom4 = new Room("You are in a bedroom.\n\n" +
 		                         "West lies a corridor.\n");
 		bedroom4.addEvent(new SleepingFigure());
 
