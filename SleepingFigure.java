@@ -1,3 +1,7 @@
+/**
+ * The sleeping figure in the fourth bedroom.
+ * It drops the dirty bundle when inspected.
+ */
 public class SleepingFigure extends Event
 {
 	public SleepingFigure()
@@ -7,6 +11,11 @@ public class SleepingFigure extends Event
 		descr = "There's a sleeping figure in a bed in the room.\n";
 	}
 
+	/**
+	 * If not already inspected, create dirty bundle
+	 * and add it to the current room.
+	 * Otherwise return a useless describing string.
+	 */
 	public String inspect()
 	{
 		if (!interactedWith) {

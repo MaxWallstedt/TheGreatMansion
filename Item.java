@@ -1,22 +1,17 @@
+/**
+ * An item that can be picked up, used and thrown.
+ */
 public class Item
 {
+	// The name of the item. Used to identify item in commands.
 	private String name;
+
+	// The description of the item. Used in the long description of room.
 	private String descr;
-	private int id;
 
 	public Item(String name)
 	{
 		this.name = name;
-	}
-
-	public void setDescr(String descr)
-	{
-		this.descr = descr;
-	}
-
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 
 	public String getName()
@@ -24,13 +19,13 @@ public class Item
 		return name;
 	}
 
+	public void setDescr(String descr)
+	{
+		this.descr = descr;
+	}
+
 	public String getDescr()
 	{
 		return descr;
-	}
-
-	public int getId()
-	{
-		return id;
 	}
 }

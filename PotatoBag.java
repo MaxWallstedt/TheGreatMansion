@@ -1,3 +1,17 @@
+/**
+ * This is the potato bag in the basement.
+ * When inspected, it drops the piano tuning tools.
+ *
+ * It inherits the following from Event class:
+ *     protected String name;
+ *     protected String descr;
+ *     protected boolean interactedWith
+ *
+ *     public String getDescr();
+ *     public String getName();
+ *     public String inspect();
+ *     public void setInteractedWith();
+ */
 public class PotatoBag extends Event
 {
 	public PotatoBag()
@@ -7,6 +21,10 @@ public class PotatoBag extends Event
 		descr = "There's a potato bag on the floor\n";
 	}
 
+	/**
+	 * First create the piano tuning tools and put them in the current room.
+	 * Then return a useless describing string.
+	 */
 	public String inspect()
 	{
 		if (!interactedWith) {

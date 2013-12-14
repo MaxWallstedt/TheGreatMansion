@@ -3,11 +3,23 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * A class to get input from the terminal.
+ * It also contains a list of commands that the 'help'
+ * command reads from when printing available commands.
+ */
 public class Prompt
 {
+	// Buffered reader from System.in
 	private BufferedReader buf;
+
+	// The list of available commands. Not used to interpret
+	// the commands, but to print available commands.
 	private ArrayList<Command> cmds;
 
+	/**
+	 * Create all commmands and the buffered reader.
+	 */
 	public Prompt()
 	{
 		cmds = new ArrayList<Command>();
@@ -66,6 +78,18 @@ public class Prompt
 		cmds.add(talk);
 	}
 
+	/**
+	 * Return the entire list of commands.
+	 */
+	public ArrayList<Command> getCmds()
+	{
+		return cmds;
+	}
+
+	/**
+	 * Print a prompt and .return the input from System.in as a String.
+	 * If this fails it throws an error.
+	 */
 	public String getLine()
 	{
 		System.out.print("> ");
@@ -75,10 +99,5 @@ public class Prompt
 		} catch (IOException e) {
 			throw new Error("Problem reading from stdin");
 		}
-	}
-
-	public ArrayList<Command> getCmds()
-	{
-		return cmds;
 	}
 }

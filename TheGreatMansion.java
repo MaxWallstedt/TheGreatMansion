@@ -1,11 +1,24 @@
 import java.util.ArrayList;
 
+/**
+ * The main class of the game.
+ */
 public class TheGreatMansion
 {
+	// The prompt that gives inpput from the terminal.
 	private static Prompt prompt;
+
+	// A 'pointer' to the current room.
 	private static Room currentRoom;
+
+	// A 'pointer' to the room that will end the game.
 	private static Room endRoom;
+
+	// A list of the players picked up items
 	private static Inventory inventory;
+
+	// Transporter rooms; when player enters a transporter,
+	// the player is teleported to a random tansporter room.
 	private static ArrayList<Room> transporters;
 
 	public static void main(String[] args)
@@ -35,6 +48,9 @@ public class TheGreatMansion
 		return currentRoom;
 	}
 
+	/**
+	 * Execute the commands specified from the input.
+	 */
 	private static boolean interpret(String cmdStr)
 	{
 		String[] cmdArray = cmdStr.split("\\s+");
@@ -144,6 +160,9 @@ public class TheGreatMansion
 		return true;
 	}
 
+	/**
+	 * Use item if it is usable in the current room.
+	 */
 	private static String use(String itemName)
 	{
 		if (itemName.equals("piano tuning tools")) {
@@ -203,6 +222,9 @@ public class TheGreatMansion
 		System.out.println("Goodbye! Have a great life!\n");
 	}
 
+	/**
+	 * Create the rooms and give them doors, items, events and charaters.
+	 */
 	private static void createRooms()
 	{
 		Room outside = new Room("You are outside the Great Mansion.\n\n" +
