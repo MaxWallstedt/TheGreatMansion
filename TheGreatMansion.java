@@ -96,7 +96,11 @@ public class TheGreatMansion
 				System.out.println(currentRoom.getLongDescr());
 			}
 		} else if (cmd.equals("take")) {
-			if (!currentRoom.containsItem(cmdArgs)) {
+			if (currentRoom.containsEvent(cmdArgs)) {
+				System.out.println("You can't take that.\n");
+			} else if (currentRoom.containsCharacter(cmdArgs)) {
+				System.out.println("That would be rude!\n");
+			} else if (!currentRoom.containsItem(cmdArgs)) {
 				System.out.println("No such item in the room!\n");
 			} else {
 				inventory.addItem(currentRoom.take(cmdArgs));
@@ -116,13 +120,19 @@ public class TheGreatMansion
 				System.out.println(use(cmdArgs));
 			}
 		} else if (cmd.equals("inspect")) {
-			if (!currentRoom.containsEvent(cmdArgs)) {
+			if (currentRoom.containsItem(cmdArgs)) {
+				System.out.println("It seems to be some sort of item.\n");
+			} else if (currentRoom.containsCharacter(cmdArgs)) {
+				System.out.println("That would indeed be rude.\n");
+			} else if (!currentRoom.containsEvent(cmdArgs)) {
 				System.out.println("No such thing in the room!\n");
 			} else {
 				System.out.println(currentRoom.getEvent(cmdArgs).inspect());
 			}
 		} else if (cmd.equals("talk")) {
-			if (!currentRoom.containsCharacter(cmdArgs)) {
+			if (currentRoom.containsItem(cmdArgs) || currentRoom.containsEvent(cmdArgs)) {
+				System.out.println("That will probably not improve your sanity.\n");
+			} else if (!currentRoom.containsCharacter(cmdArgs)) {
 				System.out.println("There's no such character in this room.\n");
 			} else {
 				System.out.println(currentRoom.getCharacter(cmdArgs).talkTo());
